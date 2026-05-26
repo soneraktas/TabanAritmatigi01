@@ -52,18 +52,19 @@ public class HelloController {
 
             //int sayi = 42; // Kullanıcının girdiği sayı bunu yapay zeka yazdı
 
-            for (int i = 0; i < 7; i++) {
-                // i. biti kontrol et (Sağdan sola doğru)
-                // (sayi >> i) & 1 ifadesi ilgili bitin 0 mı 1 mi olduğunu verir
-                int bit = (sayi >> i) & 1;
+            boolean[] bitler = new boolean[7];
 
-                if (bit == 1) {
-                    System.out.println("LED " + i + ": YANIYOR");
-                    // Burada i. LED'i yakma kodun gelecek
-                } else {
-                    System.out.println("LED " + i + ": SÖNÜK");
-                    // Burada i. LED'i söndürme kodun gelecek
-                }//end else
+            for (int i = 0; i < 7; i++) {
+                // Sayıyı sağa kaydır ve en sağdaki bitin 1 olup olmadığına bak
+                bitler[i] = ((sayi >> i) & 1) == 1;
+            }//end for
+
+// Kullanım örneği:
+// bitler[0] -> En düşük değerli bit (LSB) - 2^0
+// bitler[6] -> En yüksek değerli bit (MSB) - 2^6
+
+            for (int b = 0; b < bitler.length; b++) {
+                System.out.println(b+" inci led in durumu...:"+bitler[b]);
             }//end for
 
         }catch (Exception e){
