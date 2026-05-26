@@ -43,12 +43,12 @@ public class HelloController {
         // ASLINDA BURADA KONTROL YAPISINA GEREK KALMADI ARTIK initialize() metodu içinde her şey kontrol ediliyor
         String girilenSayi=sayiTF.getText().trim();
         int sayi=0;
+        String sonucText="";
 
         System.out.println("textField deki sayı...:"+girilenSayi);
         try {
             sayi=Integer.parseInt(girilenSayi);
             System.out.println("girilen sayı başarılı bir şekilde int e dönüştü...:"+sayi);
-            sonuc.setText("girmiş olduğunuz sayı...:"+girilenSayi);
 
             //int sayi = 42; // Kullanıcının girdiği sayı bunu yapay zeka yazdı
 
@@ -65,7 +65,9 @@ public class HelloController {
 
             for (int b = 0; b < bitler.length; b++) {
                 System.out.println(b+" inci led in durumu...:"+bitler[b]);
+                sonucText += " "+bitler[b];
             }//end for
+            sonuc.setText("sonuc...:"+sonucText);
 
         }catch (Exception e){
             System.out.println("hata oluştu girilen sayı int tipine dönüşemedi");

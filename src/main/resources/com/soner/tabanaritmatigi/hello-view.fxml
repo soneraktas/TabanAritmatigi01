@@ -41,7 +41,7 @@
             </ImageView>
             <Label fx:id="sonuc" prefHeight="18.0" prefWidth="398.0" text="sonuç...:" textFill="#820751">
                <font>
-                  <Font size="22.0" />
+                  <Font size="15.0" />
                </font>
             </Label>
          </children>
