@@ -49,12 +49,13 @@ public class HelloController {
         // ASLINDA BURADA KONTROL YAPISINA GEREK KALMADI ARTIK initialize() metodu içinde her şey kontrol ediliyor
         // AMA YİNEDE TextField IN İÇİ BOŞKEN HESAPLA METODUNA BASILIRSA TRY CATCH YİNE GEREKLİ
         String girilenSayi=sayiTF.getText().trim();
+
         int sayi=0;
 
         try {
             sayi=Integer.parseInt(girilenSayi);
             System.out.println("girilen sayı başarılı bir şekilde int e dönüştü...:"+sayi+" sayının 2 tabandaki yazımı...:"+Integer.toBinaryString(sayi));
-
+            playBinarySound(Integer.toBinaryString(sayi));
             boolean[] bitler = new boolean[7];
 
             for (int i = 0; i < 7; i++) {
@@ -110,5 +111,19 @@ public class HelloController {
         }//end catch
 
     }//end hesapla
+
+    public void playBinarySound(String binaryString) {
+        try {
+            // İkili sayıyı boşluklarla ayırıyoruz (Örn: "101" -> "1 0 1")
+            // Böylece "yüz bir" yerine "bir sıfır bir" diye okur.
+            String formattedNumber = binaryString.replace("", " ").trim();
+
+            ProcessBuilder pb = new ProcessBuilder("espeak", "-v", "tr", "-s", "170", "-g", "5", formattedNumber);
+            pb.start();
+        } catch (Exception e) {
+            System.out.println("sesi çalarken hata oluştu ");
+            //e.printStackTrace();
+        }//end catch
+    }//end playBinarySound
 
 }//end class
