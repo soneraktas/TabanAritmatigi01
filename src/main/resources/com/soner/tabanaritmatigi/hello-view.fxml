@@ -9,11 +9,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.soner.tabanaritmatigi.HelloController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.soner.tabanaritmatigi.HelloController">
    <effect>
       <DropShadow />
    </effect>
@@ -36,14 +36,10 @@
                   <Image url="@tabanAritmatigi.png" />
                </image>
                <HBox.margin>
-                  <Insets right="30.0" />
+                  <Insets />
                </HBox.margin>
             </ImageView>
-            <Label fx:id="sonuc" prefHeight="18.0" prefWidth="398.0" text="sonuç...:" textFill="#820751">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
+            <TilePane fx:id="ledPane" alignment="CENTER" hgap="15.0" prefHeight="200.0" prefWidth="470.0" vgap="10.0" />
          </children>
       </HBox>
    </bottom>
