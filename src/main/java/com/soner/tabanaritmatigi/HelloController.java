@@ -1,5 +1,6 @@
 package com.soner.tabanaritmatigi;
 
+import com.pi4j.io.gpio.digital.DigitalOutput;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -10,7 +11,16 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.effect.DropShadow;
 
+import static com.soner.tabanaritmatigi.Launcher.morKablo;
+import static com.soner.tabanaritmatigi.Launcher.maviKablo;
+import static com.soner.tabanaritmatigi.Launcher.yesilKablo;
+import static com.soner.tabanaritmatigi.Launcher.sariKablo;
+import static com.soner.tabanaritmatigi.Launcher.turuncuKablo;
+import static com.soner.tabanaritmatigi.Launcher.kirmiziKablo;
+import static com.soner.tabanaritmatigi.Launcher.kahveKablo;
+
 public class HelloController {
+    DigitalOutput[] kablolar = {morKablo,maviKablo,yesilKablo,sariKablo,turuncuKablo,kirmiziKablo,kahveKablo};
 
     @FXML
     private TilePane ledPane;
@@ -42,6 +52,18 @@ public class HelloController {
 
     @FXML
     void hesapla(ActionEvent event) {
+
+        //Ledleri söndürelim
+        morKablo.low();
+        maviKablo.low();
+        yesilKablo.low();
+        sariKablo.low();
+        turuncuKablo.low();
+        kirmiziKablo.low();
+        kahveKablo.low();
+
+
+
         // Önce TilePane içini temizleyelim (her hesapla değiştiğinde üst üste binmesin)
         // 1. Önce temizlik: Eski daireleri siliyoruz
         ledPane.getChildren().clear();
@@ -55,7 +77,7 @@ public class HelloController {
         try {
             sayi=Integer.parseInt(girilenSayi);
             System.out.println("girilen sayı başarılı bir şekilde int e dönüştü...:"+sayi+" sayının 2 tabandaki yazımı...:"+Integer.toBinaryString(sayi));
-            playBinarySound(Integer.toBinaryString(sayi));
+            //playBinarySound(Integer.toBinaryString(sayi));
             boolean[] bitler = new boolean[7];
 
             for (int i = 0; i < 7; i++) {
@@ -69,6 +91,11 @@ public class HelloController {
 
             for (int b = 0; b < bitler.length; b++) {
                 System.out.println(b+" inci led in durumu...:"+bitler[b]);
+                if (bitler[b]){
+                    kablolar[b].high();
+                }else {
+                    kablolar[b].low();
+                }//end else
             }//end for
 
             // 2. Daireleri Oluşturma Döngüsü
